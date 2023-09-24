@@ -142,7 +142,8 @@ fedora_report_metrics_public:
   extends:
     - .unit_test
     - .only_code
-  before_script: 
+  before_script:
+    - if [ "$TEST" == "python" ]; then python3 -m pip install xmlrunner; fi
     - if [ "$TEST" == "cli" ]; then python3 -m pip install -r qa/tests/requirements.txt; fi
     - if [ "$TEST" == "cli" ]; then sudo dnf -y install gerbv; fi
   parallel:
